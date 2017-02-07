@@ -118,17 +118,6 @@ void processEvent(event_t event) {
     }
 }
 
-void EXTI0_IRQHandler(void) {
-    // Center Button
-    if ((EXTI->PR1 & 1) == 1) {
-        EXTI->EMR1 = 0x1;
-        processEvent(EVENT_RISING_EDGE_DETECT);
-        Green_LED_Toggle();
-        EXTI->PR1 = 1;    
-        EXTI->EMR1 = 0x0;
-	}
-}
-
 void TIM6_DAC_IRQHandler(void) {
 
     if((TIM6->SR & 1) != 0)    {                  // If update flag is set
